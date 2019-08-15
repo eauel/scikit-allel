@@ -226,7 +226,8 @@ class GenotypeRandomizedPCA(object):
         if type(x) is da.Array:
             from dask.array.linalg import svd_compressed
             u, s, v = svd_compressed(x, n_components,
-                                     n_power_iter=self.iterated_power)
+                                     n_power_iter=self.iterated_power,
+                                     recompute=True)
         else:
             from sklearn.utils.extmath import randomized_svd
             u, s, v = randomized_svd(x, n_components,
